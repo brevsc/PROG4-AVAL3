@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../utils/get_genres.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,21 +12,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    fetchGenres();
-  }
-
-  Map<String, dynamic>? genresData;
-	List<dynamic>? genres;
-
-  Future<void> fetchGenres() async {
-    try {
-      final Map<String, dynamic> data = await getGenres();
-      setState(() {
-        genresData = data;
-      });
-    } catch (error) {
-      print('Erro ao buscar os gêneros: $error');
-    }
   }
 
   @override
@@ -36,11 +20,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Catálogo'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: genresData != null
-            ? Text('${genresData!.values}')
-            : const CircularProgressIndicator(),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: Text("Testando Som"),
       ),
     );
   }
