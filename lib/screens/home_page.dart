@@ -65,7 +65,7 @@ class HomePageState extends State<HomePage> {
                   ),
               ],
             )
-            : const CircularProgressIndicator()
+            : const Center(child: CircularProgressIndicator())
       ),
       bottomNavigationBar: const BottomNavigation(),
     );
