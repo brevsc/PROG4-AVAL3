@@ -1,17 +1,41 @@
 import 'package:flutter/material.dart';
+import '/screens/title_details_page.dart';
+import '../utils/get_titles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
+  List<dynamic>? titles;
+
   @override
   void initState() {
     super.initState();
+    fetchTitles();
+  }
+
+  Future<void> fetchTitles() async {
+    try {
+      final Map<String, dynamic> data = await getTitles(10);
+      setState(() {
+        titles = data['results'];
+      });
+    } catch (error) {
+      print('Error fetching titles: $error');
+    }
+  }
+
+  void navigateToDetailsPage(Map<String, dynamic> title) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => TitleDetailsPage(title: title),
+      ),
+    );
   }
 
   @override
@@ -20,9 +44,27 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Catálogo'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Text("Testando Som"),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: titles != null
+            ? Column(
+              children: [
+                Expanded(
+                    child: ListView.builder(
+                      itemCount: titles!.length,
+                      itemBuilder: (context, index) {
+                        final title = titles![index];
+                        return ListTile(
+                          title: Text(title['titleText']['text'] ?? ''),
+                          subtitle: Text(title['titleType']['text'] ?? ''),
+                          onTap: () => navigateToDetailsPage(title),
+                        );
+                      },
+                    ),
+                  ),
+              ],
+            )
+            : const CircularProgressIndicator(),
       ),
     );
   }
