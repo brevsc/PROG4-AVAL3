@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class TitleDetailsPage extends StatelessWidget {
   final Map<String, dynamic> title;
 
@@ -30,16 +31,17 @@ class TitleDetailsPage extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8.0),
-            Text('Gênero: ${title['genres']?.join(', ') ?? ''}'),
+            Text('Gênero: ${title['genres']?['genres']?[0]?['text'] ?? 'Gênero desconhecido'}'),
             const SizedBox(height: 8.0),
             Text('Ano de lançamento: ${title['releaseYear']?['year'] ?? ''}'),
             const SizedBox(height: 8.0),
-            Text('Sinopse: ${title['synopsis']?['text'] ?? ''}'),
+            Text('Sinopse: ${title['plot']?['plotText']?['plainText'] ?? 'Sinopse desconhecida'}'),
             const SizedBox(height: 8.0),
-            Text('Classificação: ${title['rating']?['text'] ?? ''}'),
+            Text('Classificação: ${title['ratingsSummary']?['aggregateRating'] ?? 'Sem classificação'}'),
           ],
         ),
       ),
     );
   }
 }
+

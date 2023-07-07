@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/bottom_navigator.dart';
 import '/screens/title_details_page.dart';
 import '../utils/get_titles.dart';
 
@@ -64,8 +65,9 @@ class HomePageState extends State<HomePage> {
                   ),
               ],
             )
-            : const CircularProgressIndicator(),
+            : const CircularProgressIndicator()
       ),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }
