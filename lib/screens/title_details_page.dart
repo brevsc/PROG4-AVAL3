@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class TitleDetailsPage extends StatelessWidget {
   final Map<String, dynamic> title;
 
@@ -25,23 +24,34 @@ class TitleDetailsPage extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-            const SizedBox(height: 16.0),
-            Text(
-              'Tipo: ${title['titleType']?['text'] ?? ''}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 16.0),
+                  Text(
+                    'Tipo: ${title['titleType']?['text'] ?? ''}',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8.0),
+                  Text(
+                      'Gênero: ${title['genres']?['genres']?[0]?['text'] ?? 'Gênero desconhecido'}'),
+                  const SizedBox(height: 8.0),
+                  Text(
+                      'Ano de lançamento: ${title['releaseYear']?['year'] ?? ''}'),
+                  const SizedBox(height: 8.0),
+                  Text(
+                      'Sinopse: ${title['plot']?['plotText']?['plainText'] ?? 'Sinopse desconhecida'}'),
+                  const SizedBox(height: 8.0),
+                  Text(
+                      'Classificação: ${title['ratingsSummary']?['aggregateRating'] ?? 'Sem classificação'}'),
+                ],
+              ),
             ),
-            const SizedBox(height: 8.0),
-            Text('Gênero: ${title['genres']?['genres']?[0]?['text'] ?? 'Gênero desconhecido'}'),
-            const SizedBox(height: 8.0),
-            Text('Ano de lançamento: ${title['releaseYear']?['year'] ?? ''}'),
-            const SizedBox(height: 8.0),
-            Text('Sinopse: ${title['plot']?['plotText']?['plainText'] ?? 'Sinopse desconhecida'}'),
-            const SizedBox(height: 8.0),
-            Text('Classificação: ${title['ratingsSummary']?['aggregateRating'] ?? 'Sem classificação'}'),
           ],
         ),
       ),
     );
   }
 }
-
