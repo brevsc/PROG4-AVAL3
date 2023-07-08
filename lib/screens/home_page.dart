@@ -46,27 +46,31 @@ class HomePageState extends State<HomePage> {
         title: const Text('Catálogo'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: titles != null
-            ? Column(
-              children: [
-                Expanded(
-                    child: ListView.builder(
-                      itemCount: titles!.length,
-                      itemBuilder: (context, index) {
-                        final title = titles![index];
-                        return ListTile(
-                          title: Text(title['titleText']['text'] ?? ''),
-                          subtitle: Text(title['titleType']['text'] ?? ''),
-                          onTap: () => navigateToDetailsPage(title),
-                        );
-                      },
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: titles != null
+              ? Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: titles!.length,
+                        itemBuilder: (context, index) {
+                          final title = titles![index];
+                          return ListTile(
+                            leading: Image.network(
+                              title['primaryImage']['url'],
+                              width: 100,
+                              fit: BoxFit.cover,
+                            ),
+                            title: Text(title['titleText']['text'] ?? ''),
+                            subtitle: Text(title['titleType']['text'] ?? ''),
+                            onTap: () => navigateToDetailsPage(title),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-              ],
-            )
-            : const Center(child: CircularProgressIndicator())
-      ),
+                  ],
+                )
+              : const Center(child: CircularProgressIndicator())),
       bottomNavigationBar: const BottomNavigation(),
     );
   }
