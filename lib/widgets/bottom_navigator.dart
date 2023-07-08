@@ -17,8 +17,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.feed), label: 'Feed'),
-        BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Team'),
+        BottomNavigationBarItem(icon: Icon(Icons.feed), label: 'Catálogo'),
+        BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Time'),
       ],
       onTap: (int index) => {
         if (index == team)

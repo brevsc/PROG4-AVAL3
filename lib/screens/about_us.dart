@@ -17,7 +17,7 @@ class AboutUsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('About the team'),
+        title: const Text('Sobre o time'),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 48.0),
